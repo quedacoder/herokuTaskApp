@@ -1,0 +1,215 @@
+/****************************************
+*             Navigation                *
+*****************************************/
+#navbar-style-custom {
+	height: 80px;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	background-color: #222!important;
+}
+
+#logo-custom {
+	font-weight: 700;
+	line-height: 20px;
+	font-size: 25px;
+}
+
+.navigation-center {
+	margin-right: 8%;
+}
+
+li a {
+	color: white;
+}
+
+.sub-nav {
+	color: #222;
+	height: 80px;
+	background-color: light-grey;
+}
+
+.sub-nav-text-color {
+	color: #222;
+}
+
+.sub-nav-vertical-line>li {
+	border-right: 1px solid #222;
+}
+
+/* .nav>li{ */
+/*   border-right: 1px solid white; */
+/* } */
+
+/* .nav>li:last-child{ */
+/*    border: none; */
+/* } */
+
+.vertical-line>li {
+	border-right: 1px solid white;
+}
+
+.vertical-line>li:last-child {
+	border: none;
+}
+
+.sub-nav-right-spacing {
+	margin-right: 2.5%;
+}
+
+.sub-nav-bar-link {
+	box-shadow: 1px 1px 8px 1px #17a2b8;
+}
+
+/****************************************
+*           Carousel Header             *
+*****************************************/
+.carousel-text-align {
+	text-align: center;
+}
+
+#carousel-header-2 {
+	/*margin-left:42.5%;*/
+	margin-top: 3%;
+	margin-bottom: 3%;
+	color: #222;
+}
+
+.col > p {
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+
+.carousel-control-prev > span {
+	color: #222;
+}
+
+.carousel-control-next > span {
+	color: #222;
+}
+
+.remove-margin {
+	margin-top: 0px;
+}
+
+.item3-margin {
+	margin-top: 3%;
+}
+
+.margin-top-zero {
+	margin-top: 0px!important;
+}
+
+.item-headers {
+	margin-top: 1%;
+	margin-bottom: 0px
+}
+
+.text-align {
+	text-align: center;
+	margin-top: 5%;
+}
+
+.center-forms {
+	margin: 10% auto;
+	width: 35%;
+}
+
+#registration-login-link {
+	margin-left: 2%;
+    margin-top: 1.5%;
+}
+
+/****************************************
+*          Project List Box             *
+*****************************************/
+.project-container {
+/*  height: 250px; */
+	width: 1% !important; 
+	padding: 10px 10px;
+	background-color: white;
+/* 	border: 2px solid #4c2e16; */
+	box-shadow: 1px 1px 8px 1px darkgrey;
+ 	margin: 5% .3%; */
+}
+
+.project-form-space {
+	margin: 5% 2.5% 2.5%;
+}
+
+.project-input {
+	width: 90%;
+	margin-bottom: 1%;
+}
+
+#accordion-custom {
+	width: 100%;
+}
+
+.details-custom {
+	margin: 1% 30% 1% 2% !important;
+}
+
+.details-custom-links {
+	margin-left: 2%;
+	display: inherit;
+}
+
+.details-custom-link-a {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 3%;
+}
+
+.details-custom-link-button {
+	margin-right: 6%;
+} 
+
+.custom-card-header {
+	display: inherit;
+}
+
+.col-text-align-left {
+	text-align: left;
+}
+
+.col-text-align-center {
+	text-align: center;
+}
+
+.col-text-align-end {
+	text-align: end;
+}
+
+#wrapper {
+  width: 900px;
+  height: 250px;
+  margin: 30% auto;
+  padding: 50px 10px;
+  background-color: white;
+  box-shadow: 1px 1px 8px 1px darkgrey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
