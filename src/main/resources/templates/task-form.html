@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+	<!-- Header Information -->
+	<head th:replace="fragments/header :: header"></head>
+
+	<body>
+	
+		<!-- Navigation Bar -->
+		<nav th:replace="fragments/navigation-unsecure :: navigation">
+		</nav>
+		<!-- Sub Navigation Bar -->
+		<nav th:replace="fragments/sub-navigation :: sub-nav-task">
+		</nav>
+		<!-- Page Title Information -->
+		<!-- TODO: Figure out a way to make this a fragment and adding header to model attribute -->
+		<header class="container-fluid">
+			<h2 class="carousel-text-align" id="carousel-header-2">Create Task</h2>
+			<hr >
+		</header>
+		
+		<div class="container-fluid">
+			<form th:object="${task}" method="post" th:action="@{/task/create/save}">
+				<div class="form-row project-form-space">
+					<div class="form-group col-md-8">
+					    <!-- Form Row 1 -->
+					    <div class="form-row">
+					    	<div class="form-group col">
+					    		<label for="name">Task Name</label>
+								<input type="text" class="form-control project-input" id="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid :''">
+								<div th:if="${#fields.hasErrors('name')}" th:class="invalid-feedback" th:errors="*{name}">
+						    		<p th:errors="*{name}"></p>
+						    	</div>
+					    	</div>
+					    	<div class="form-group col">
+								<label for="type" style="margin-right: 1%;">Task Type</label>
+								<select class="custom-select project-input" name="type" th:classappend="${#fields.hasErrors('type')} ? is-invalid:''">
+									<option></option>
+								</select>
+								<div th:if="${#fields.hasErrors('type')}" th:class="invalid-feedback" th:errors="*{type}">
+						    		<p th:errors="*{type}"></p>
+						    	</div>
+							</div>
+					    </div>
+					    <!-- Form Row 2 -->
+					    <div class="form-row">
+					    	<div class="form-group col">
+					    		<label for="plannedStartDate">Planned Start Date</label>
+								<input type="date" pattern="yyyy-MM-dd" class="form-control project-input" id="plannedStartDate" th:field="*{plannedStartDate}">
+					    	</div>
+					    	<div class="form-group col">
+								<label for="teamRequestedBy">Team Requested By</label>
+								<input type="text" class="form-control project-input" id="teamRequestedBy" th:field="*{teamRequestedBy}" >
+							</div>
+					    </div>
+					    <!-- Form Row 3 -->
+					    <div class="form-row">
+							<div class="form-group col">
+								<label for="status">Task Status</label>
+								<select class="custom-select project-input" name="status" th:classappend="${#fields.hasErrors('status')} ? is-invalid:''">
+									<option></option>
+								</select>
+								<div th:if="${#fields.hasErrors('status')}" th:class="invalid-feedback" th:errors="*{status}">
+						    		<p th:errors="*{status}"></p>
+						    	</div>
+							</div>
+							<div class="form-group col">
+								<label for="requestedFinishDate">Requested Finish Date</label>
+								<input type="date" pattern="yyyy-MM-dd" class="form-control project-input" id="requestedFinishDate" th:field="*{requestedFinishDate}">
+							</div>
+					    </div>
+					</div>
+					<!-- Form Column 3 -->
+					<div class="form-group col-md-4">
+						<label for="taskDescription">Description</label>
+						<textarea cols="25" rows="3" class="form-control" th:field="*{description}" th:classappend="${#fields.hasErrors('description')} ? is-invalid :''"
+						          style="margin-bottom: 3.5%;"></textarea>
+						<div th:if="${#fields.hasErrors('description')}" th:class="invalid-feedback">
+				    		<p th:errors="*{description}"></p>
+				    	</div>
+				    	<label for="comment">Comment</label>
+						<textarea cols="25" rows="3" class="form-control" th:field="*{comment}" th:classappend="${#fields.hasErrors('comment')} ? is-invalid :''"></textarea>
+						<div th:if="${#fields.hasErrors('comment')}" th:class="invalid-feedback">
+				    		<p th:errors="*{comment}"></p>
+				    	</div>
+					</div> 
+					
+				</div>
+				<div class="form-row">
+					<div class="form-group mr-auto ml-auto">
+						<button type="submit" class="btn btn-danger mr-auto ml-auto" name="action" value="cancel">Cancel</button>
+						<button type="submit" class="btn btn-info mr-auto ml-auto" name="action" value="save">Save Task</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
