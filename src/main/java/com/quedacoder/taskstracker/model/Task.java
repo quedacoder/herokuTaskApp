@@ -10,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "task")
 public class Task {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false, length = 50)
 	private String name;
@@ -25,12 +27,14 @@ public class Task {
 	private String type;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate plannedStartDate;
 	
 	@Column(nullable = false, length = 40)
 	private String teamRequestedBy;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate requestedFinishDate;
 	
 	@Column(nullable = false, length = 300)
@@ -49,7 +53,7 @@ public class Task {
 		
 	}
 
-	public Task(int id, String name, String type, LocalDate plannedStartDate, String teamRequestedBy,
+	public Task(Long id, String name, String type, LocalDate plannedStartDate, String teamRequestedBy,
 			LocalDate requestedFinishDate, String description, String comment, String status,
 			LocalDateTime actualStartDate, LocalDateTime actualFinishDate) {
 		super();
@@ -66,11 +70,11 @@ public class Task {
 		this.actualFinishDate = actualFinishDate;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

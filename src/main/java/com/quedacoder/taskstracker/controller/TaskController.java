@@ -1,6 +1,7 @@
 package com.quedacoder.taskstracker.controller;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,16 +39,27 @@ public class TaskController {
 	@PostMapping("/task/create/save")
 	public String createTask(@RequestParam("action") String action, @ModelAttribute Task task, BindingResult result) {
 		
+		if (action.equalsIgnoreCase("cancel")) {
+			return "redirect:/";
+		}
 		
 		if (task != null) {
-			task.setStatus("Not Started");
-			task.setType("Enhancement");
 			taskService.createTask(task);
 		}
 		
-		return "redirect/tasks";
-
+		return "redirect:/tasks";
+	}
+	
+	@GetMapping("/task/edit/{task_id}")
+	public String getTaskFormForEdit(Model model, @PathVariable("task_id") Long task_id) {
 		
+		Optional<Task> task = taskService.findById(task_id);
+		
+		if (task.isPresent()) {
+			model.addAttribute("task", task.get());
+		}
+		
+		return "task-form";
 	}
 
 }
