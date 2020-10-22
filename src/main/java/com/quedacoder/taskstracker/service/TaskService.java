@@ -13,5 +13,6 @@ public interface TaskService {
 	Task createTask(Task taskToSave);
     Iterator<Task> getAllTask();
 	Optional<Task> findById(Long task_id);
+	void deleteTaskById(Long task_id);
 
 }
