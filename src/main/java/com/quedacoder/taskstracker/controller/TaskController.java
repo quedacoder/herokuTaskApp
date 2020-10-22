@@ -34,9 +34,18 @@ public class TaskController {
 	}
 	
 	@PostMapping("/task/create/save")
-	public String createTask(@RequestParam("action") String action, BindingResult result, Model model) {
+	public String createTask(@RequestParam("action") String action, Model model, BindingResult result) {
+		
+		Task task = (Task) model.getAttribute("task");
+		
+		if (task != null) {
+			task.setStatus("Not Started");
+			task.setType("Enhancement");
+			taskService.createTask(task);
+		}
 		
 		return "redirect/tasks";
+
 		
 	}
 
