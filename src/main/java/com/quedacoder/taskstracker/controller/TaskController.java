@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,9 +35,8 @@ public class TaskController {
 	}
 	
 	@PostMapping("/task/create/save")
-	public String createTask(@RequestParam("action") String action, Model model, BindingResult result) {
+	public String createTask(@RequestParam("action") String action, @ModelAttribute Task task, BindingResult result) {
 		
-		Task task = (Task) model.getAttribute("task");
 		
 		if (task != null) {
 			task.setStatus("Not Started");
