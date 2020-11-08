@@ -69,5 +69,24 @@ public class TaskController {
 		taskService.deleteTaskById(task_id);
 		return "redirect:/tasks";
 	}
+	
+	@GetMapping("/task/history/{task_id}")
+	public String getHistoryTask(Model model, @PathVariable("task_id") Long task_id) {
+		
+		Optional<Task> task = taskService.findById(task_id);
+		
+		Task taskHistory = null;
+		
+		if (task.isPresent()) {
+			taskHistory = taskService.getTaskHistory(task.get());
+		}
+		
+		// populate view model attributes
+		model.addAttribute("taskHistory", taskHistory.getTaskComments());
+		model.addAttribute("task", taskHistory);
+		
+		// return the view
+		return "task-history";
+	}
 
 }

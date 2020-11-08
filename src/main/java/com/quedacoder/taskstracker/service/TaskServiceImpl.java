@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quedacoder.taskstracker.model.Task;
+import com.quedacoder.taskstracker.model.TaskComment;
+import com.quedacoder.taskstracker.repository.TaskCommentRepository;
 import com.quedacoder.taskstracker.repository.TaskRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Autowired
 	TaskRepository repository;
+	
+	@Autowired
+	TaskCommentRepository taskCommentRepository;
 
 	@Override
 	public Task createTask(Task taskToSave) {
@@ -45,6 +50,7 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Optional<Task> findById(Long task_id) {
+		
 		return repository.findById(task_id);
 	}
 
@@ -53,6 +59,18 @@ public class TaskServiceImpl implements TaskService {
 		
 		repository.deleteById(task_id);
 		
+	}
+
+	@Override
+	public Task getTaskHistory(Task task) {
+		
+		//Get comment history
+		List<TaskComment> taskComments = taskCommentRepository.findAllByTaskId(task.getId());
+		
+		// set the task comment within the task object
+		task.getTaskComments().addAll(taskComments);
+		
+		return task;
 	}
 
 }

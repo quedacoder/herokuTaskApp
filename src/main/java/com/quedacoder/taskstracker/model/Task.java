@@ -2,6 +2,8 @@ package com.quedacoder.taskstracker.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,6 +51,9 @@ public class Task {
 	private LocalDateTime actualStartDate;
 	
 	private LocalDateTime actualFinishDate;
+	
+	@Transient
+	private List<TaskComment> taskComments = new ArrayList<>();
 	
 	public Task() {
 		
@@ -156,6 +162,16 @@ public class Task {
 
 	public void setActualFinishDate(LocalDateTime actualFinishDate) {
 		this.actualFinishDate = actualFinishDate;
+	}
+	
+	
+
+	public List<TaskComment> getTaskComments() {
+		return taskComments;
+	}
+
+	public void setTaskComments(List<TaskComment> taskComments) {
+		this.taskComments = taskComments;
 	}
 
 	@Override

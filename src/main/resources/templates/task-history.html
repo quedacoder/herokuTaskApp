@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/header :: header">
+	</head>
+	<body>
+		<!-- Navigation Bar -->
+		<nav th:replace="fragments/navigation-unsecure :: navigation">
+		</nav>
+	    <!-- Sub Navigation Bar -->
+		<nav th:replace="fragments/sub-navigation :: sub-nav-task-history">
+		</nav>
+		<!-- TODO: Figure out a way to make this a fragment and adding header to model attribute -->
+		<header class="container-fluid">
+			<h2 class="carousel-text-align" id="carousel-header-2">Task History</h2>
+		</header>
+		<hr style="width: 95%;">
+		<div class="container-fluid">
+			<div class="row">
+				<section class="col-md-6">
+					<div class="row justify-content-md-center" style="border-right: solid #E5E5E5 1px;">
+						<div class="col-md-auto">
+							<h2>Task Details</h2>
+							<br>
+							<h5 style="text-align: center;">Name</h5>
+							<hr>
+							<p th:text="${task.name}"></p>
+							<h5 style="text-align: center;">Description</h5>
+							<hr>
+							<p th:text="${task.description}"></p>
+							<h5 style="text-align: center;">Type</h5>
+							<hr>
+							<p th:text="${task.type}"></p>
+							<h5 style="text-align: center;">Status</h5>
+							<hr>
+							<p th:text="${task.status}"></p>
+							<h5 style="text-align: center;">Team Requested By</h5>
+							<hr>
+							<p th:text="${task.teamRequestedBy}"></p>
+							<h5 style="text-align: center;">Planned Start Date</h5>
+							<hr>
+							<p th:text="${#temporals.format(task.plannedStartDate, 'MM-dd-yyyy')}"></p>
+							<h5 style="text-align: center;">Actual Start Date</h5>
+							<hr>
+							<p th:if="${task.actualStartDate == null}">Not Started</p>
+							<p th:text="${#temporals.format(task.actualStartDate, 'MM-dd-yyyy')}"></p>
+							<h5 style="text-align: center;">Actual Finished Date</h5>
+							<hr>
+							<p th:if="${task.actualFinishDate == null}">Not Completed</p>
+							<p th:text="${#temporals.format(task.actualFinishDate, 'MM-dd-yyyy')}"></p>
+						</div>
+							
+						
+					</div>
+				</section>
+				<section class="col-md-6">
+					<div>
+						<div style="width: 80%; margin:auto;">
+							<h2 style="text-align: center;">Work Comments</h2>
+							<table class="table" style="margin-top: 10%">
+							  <thead>
+							    <tr>
+							      <th scope="col">Comment Date</th>
+							      <th scope="col">Status</th>
+							      <th scope="col">Comment</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  
+							  	<tr th:if="${taskHistory.empty}">
+							  		<td colspan="3">No Comments to Display</td>
+							  	</tr>
+							    <tr th:each="taskComment : ${taskHistory}">
+							      <td><span th:text="${#temporals.format(taskComment.createdate, 'MM-dd-yyyy HH:mm')}"></span></td>
+							      <td><span th:text="${taskComment.status}"></span></td>
+							      <td><span th:text="${taskComment.comment_text}"></span></td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>

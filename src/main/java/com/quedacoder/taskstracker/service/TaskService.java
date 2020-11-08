@@ -14,5 +14,6 @@ public interface TaskService {
     Iterator<Task> getAllTask();
 	Optional<Task> findById(Long task_id);
 	void deleteTaskById(Long task_id);
+	Task getTaskHistory(Task task);
 
 }
